@@ -1,0 +1,79 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-16 20:36:03
+ * @LastEditTime: 2020-11-16 21:41:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vs code\Web_Learning\哔哩哔哩秋.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            --offset: 0px;
+            --blur: 2px;
+        }
+
+        header {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        header>div {
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            width: 110%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        header>div>img {
+            display: block;
+            width: 110%;
+            height: 100%;
+            object-fit: cover;
+            transform: translateX(var(--offset));
+            filter: blur(var(--blur));
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div><img src="img/1.png" alt=""></div>
+        <div><img src="img/2.png" alt=""></div>
+        <div><img src="img/3.png" alt=""></div>
+        <div><img src="img/4.png" alt=""></div>
+        <div><img src="img/5.png" alt=""></div>
+        <div><img src="img/6.png" alt=""></div>
+    </header>
+    <script>
+        const images = document.querySelectorAll("header img")
+
+        document.querySelector("header").addEventListener("mousemove", e => {
+            let percentage = e.clientX / e.target.width
+
+            images.forEach((image, index) => {
+
+                image.style.setProperty("--offset", `${index*percentage*index*4.5}px`)
+                image.style.setProperty("--blur", `${Math.pow(index/images.length-percentage,2)*20}px`)
+
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>
